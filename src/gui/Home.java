@@ -18,6 +18,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
 import examples.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import javax.swing.JTextField;
+import java.awt.SystemColor;
 
 public class Home {
 
@@ -60,8 +64,48 @@ public class Home {
 		lblExemplo.setAlignmentY(Component.TOP_ALIGNMENT);
 		lblExemplo.setBounds(12, 12, 70, 15);
 		frmGuiForJuzzy.getContentPane().add(lblExemplo);
+
+		JTextArea txtLegenda = new JTextArea();
+		txtLegenda.setBackground(SystemColor.window);
+		txtLegenda.setText("launches a Type-1 Fuzzy Logic System");
+		txtLegenda.setLineWrap(true);
+		txtLegenda.setBounds(12, 310, 536, 37);
+		frmGuiForJuzzy.getContentPane().add(txtLegenda);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				String example = comboBox.getSelectedItem().toString();
+				
+		        if(example.equals("type1"))
+		        	txtLegenda.setText("launches a Type-1 Fuzzy Logic System");
+		        else if(example.equals("NStype1"))
+		        	txtLegenda.setText("launches a Non Singleton Type-1 Fuzzy Logic System");
+		        else if(example.equals("type1-2outputs"))
+		        	txtLegenda.setText("launches a Type-1 Fuzzy Logic System with 2 outputs");
+		        else if(example.equals("intervalT2"))
+		        	txtLegenda.setText("launches a Interval Type-2 Fuzzy Logic System");
+		        else if(example.equals("type1NSintervalT2"))
+		        	txtLegenda.setText("launches a type-1 Non Singleton Interval Type-2 Fuzzy Logic System");
+		        else if(example.equals("IT2NSintervalT2"))
+		        	txtLegenda.setText("launches a Interval Type-2 Non Singleton Interval Type-2 Fuzzy Logic System");
+		        else if(example.equals("intervalT2-2outputs"))
+		        	txtLegenda.setText("launches a Interval Type-2 Fuzzy Logic System with 2 output");
+		        else if(example.equals("zSlicesGT2"))
+		        	txtLegenda.setText("launches a zSlices based General Type-2 Fuzzy Logic System");
+		        else if(example.equals("type1NSzSlicesGT2"))
+		        	txtLegenda.setText("launches a zSlices based type-1 Non Singleton General Type-2 Fuzzy Logic System");
+		        else if(example.equals("IT2NSzSlicesGT2"))
+		        	txtLegenda.setText("launches a zSlices based IT2 Non Singleton General Type-2 Fuzzy Logic System");
+		        else if(example.equals("GT2NSzSlicesGT2"))
+		        	txtLegenda.setText("launches a zSlices based GT2 Non Singleton General Type-2 Fuzzy Logic System");
+		        else if(example.equals("zSlicesGT2MC"))
+		        	txtLegenda.setText("launches a zSlices based General Type-2 Fuzzy Logic System in MultiCore Mode");
+		        else if(example.equals("zSlicesGT2MC-2outputs"))
+		        	txtLegenda.setText("launches a zSlices based General Type-2 Fuzzy Logic System with 2 outputs in MultiCore Mode");
+
+			}
+		});
 		comboBox.setAlignmentY(Component.TOP_ALIGNMENT);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"type1", "NStype1", "type1-2outputs", "intervalT2", "type1NSintervalT2", "IT2NSintervalT2", "intervalT2-2outputs", "zSlicesGT2", "type1NSzSlicesGT2", "IT2NSzSlicesGT2", "GT2NSzSlicesGT2", "zSlicesGT2MC", "zSlicesGT2MC-2outputs"}));
 		comboBox.setBounds(100, 12, 199, 24);
@@ -120,6 +164,6 @@ public class Home {
 		});
 		btnClear.setBounds(560, 322, 117, 25);
 		frmGuiForJuzzy.getContentPane().add(btnClear);
-
+		
 	}
 }
